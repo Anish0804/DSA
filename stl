@@ -85,4 +85,75 @@ auto it=set.find(4);
 //If the element is not present in the set then the pointer returns the st.end() ,ie it points to the element after the last element
 
 st.erase(4);
- 
+
+//Multiset
+
+multiset<int> ms;
+ms.insert(3);
+
+//In multiset multiple occurences of a single value can be stored and count() will give the number of occurences of that particular value and in multiset the values are stored in order and erase() erases all the values present in the set at once
+
+ms.erase(2)//erases all occurances of 2
+
+ms.erase(ms.find(2))//erases one occurance of 2
+
+ms.erase(ms.find(2),ms.find(2)+2)//erases 2 occurances of 2
+
+//set does not store values in a linear fashion it rather stores all the valaues in the form of a tree
+
+unordered_set<int> us;
+us.insert(1);
+us.insert(5);
+
+/* in unordered set the values are not sorted and stored but are rather stored in an unordered fashion but only single occurance of a value can be stored*/
+
+//lower and upperbound functions of a set won't work in unordered set ,all the other functions of a set work  
+
+map<int,int> mp;
+//stores in the form of key,value pair
+//stores the value in the sorted order with respect to key
+map<pair<int,int>,int> mp1;
+map<int,pair<int,int>> mp2;
+
+mp[1]=2;//stores in the form where key is 1 and value is 2
+//.insert or .emplace are the functions that can be used to insert into the map
+mp.insert({3,4});
+mp1[{2,3}]=10;//this is the format to store the value in map mp1 where {2,3} is the key and 10 is the value
+
+for(auto it:mp)
+{
+	cout<<it.first<<" "<<it.second;
+}
+//the above for each loop is used to iterate over the map and the print the values present in the map
+
+auto it = mp.find(3)//.find() is a function used to search for a key in the map and returns an iterator for the same
+cout<<*(it).second;//this gives the value present for the key as 3
+/*whenever we use find() and that element is not there in the map or any other data structure it always uses the .end() or basically points to the space after the last element present in the array*/
+
+//in multimap everything is same as map and except the same value can be used multiple times as keys
+
+//unordered map won't store the value in a sorted order similar to unordered set
+
+//O(1) is the time complexity of unordered set and unordered map most of the times but in the worst case it goes to O(N) which rarely happens
+
+
+//Sorting
+
+sort(a,a+n)//here a is the beginning element to sort and it sorts till one element before the ending element 
+
+sort(v.begin(),v.end())//sorts an entire vector completely
+
+sort(a,a+n,greater<int>)//sorts the given array or vector in descending order
+
+//we can customize our sorting as well where we use comperator
+
+sort(a,a+n,comp)//here comp is a comperator
+
+bool comp(pair<int,int> p1,pair<int,int> p2){
+	if(p1.second<p2.second) return true;
+	if(p1.second>p2.second) return false;
+	if(p1.first>p1.first) return true;
+	else return false;
+}
+//above is a comperator boolean function it either returns a true or false ,it can be modified as required to change the sorting method
+
